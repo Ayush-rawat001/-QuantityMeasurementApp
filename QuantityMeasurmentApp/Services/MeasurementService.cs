@@ -15,5 +15,14 @@ namespace QuantityMeasurmentApp.Services
             // Call Equals method of Feet class to compare values
             return f1.Equals(f2);
         }
+
+        public bool AreEqual(Inches i1, Inches i2)
+        {
+            if (i1 == null || i2 == null)
+                return false;
+
+            return i1.Equals(i2);
+        }
+
     }
 }

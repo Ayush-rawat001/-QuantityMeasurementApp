@@ -1,7 +1,7 @@
 using QuantityMeasurmentApp.Services;
 using QuantityMeasurmentApp.Models;
 
-namespace QuantityMeasurmentApp.UI
+namespace QuantityMeasurementApp.UI
 {
     // Menu class handles user interaction
     class Menu
@@ -21,7 +21,8 @@ namespace QuantityMeasurmentApp.UI
                 // Display menu
                 Console.WriteLine("=====Welcome to Quantity Measurement App=====");
                 Console.WriteLine("1) Compare Feet");
-                Console.WriteLine("2) Exit");
+                Console.WriteLine("2) Compare Inches");
+                Console.WriteLine("3) Exit");
 
                 // Read user option
                 int option = int.Parse(Console.ReadLine() ?? "");
@@ -29,6 +30,7 @@ namespace QuantityMeasurmentApp.UI
                 // Perform action based on user choice
                 switch (option)
                 {
+                    
                     case 1:
                         // Take first input
                         Console.Write("Enter first value in feet: ");
@@ -53,6 +55,24 @@ namespace QuantityMeasurmentApp.UI
                         break;
 
                     case 2:
+                        Console.Write("Enter first value in inches: ");
+                        double i1v = Convert.ToDouble(Console.ReadLine());
+
+                        Console.Write("Enter second value in inches: ");
+                        double i2v = Convert.ToDouble(Console.ReadLine());
+
+                        Inches i1 = new Inches(i1v);
+                        Inches i2 = new Inches(i2v);
+
+                        bool inchesResult = service.AreEqual(i1, i2);
+
+                        Console.WriteLine("--------------------------");
+                        Console.Write("Values are ");
+                        Console.WriteLine(inchesResult ? "Equal" : "Not Equal");
+                        Console.WriteLine("--------------------------\n");
+                        break;
+
+                    case 3:
                         // Exit loop
                         loop = false;
                         break;

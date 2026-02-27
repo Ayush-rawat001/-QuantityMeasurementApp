@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Design;
-using QuantityMeasurmentApp.UI;
+using QuantityMeasurementApp.UI;
 
 namespace QuantityMeasurmentApp
 {
