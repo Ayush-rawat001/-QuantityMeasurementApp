@@ -7,134 +7,63 @@ namespace QuantityMeasurmentApp.Models
         private readonly double value;
         private readonly LengthUnit unit;
 
-        public QuantityLength(double value, LengthUnit unit)
-        {
-            this.value = value;
-            this.unit = unit;
-        }
+         public QuantityLength(double value, LengthUnit unit)
+{
+    if (double.IsNaN(value) || double.IsInfinity(value))
+    {
+        throw new ArgumentException("Invalid length value");
+    }
+
+    this.value = value;
+    this.unit = unit;
+}
 
         public double Value => value;
         public LengthUnit Unit => unit;
 
-
-
-        //UC6 
+        // UC6
         public QuantityLength Add(QuantityLength other)
         {
             if (other == null)
                 throw new ArgumentException("Second operand cannot be null");
 
-            // Convert both to base unit (feet)
-            double firstInFeet = Convert(Value, Unit, LengthUnit.Feet);
-            double secondInFeet = Convert(other.Value, other.Unit, LengthUnit.Feet);
+            double firstFeet = LengthUnitConverter.ToFeet(Value, Unit);
+            double secondFeet = LengthUnitConverter.ToFeet(other.Value, other.Unit);
 
-            // Add
-            double sumFeet = firstInFeet + secondInFeet;
+            double sumFeet = firstFeet + secondFeet;
 
-            // Convert back to unit of first operand
-            double result = Convert(sumFeet, LengthUnit.Feet, Unit);
+            double result = LengthUnitConverter.FromFeet(sumFeet, Unit);
 
             return new QuantityLength(result, Unit);
         }
 
-        //UC7 ADD METHOD OVERLOADED
+        // UC7
         public QuantityLength Add(QuantityLength other, LengthUnit targetUnit)
         {
             if (other == null)
                 throw new ArgumentException("Second operand cannot be null");
 
-            if (!Enum.IsDefined(typeof(LengthUnit), targetUnit))
-                throw new ArgumentException("Invalid target unit");
+            double firstFeet = LengthUnitConverter.ToFeet(Value, Unit);
+            double secondFeet = LengthUnitConverter.ToFeet(other.Value, other.Unit);
 
-            // convert both to base unit (feet)
-            double firstFeet = Convert(Value, Unit, LengthUnit.Feet);
-            double secondFeet = Convert(other.Value, other.Unit, LengthUnit.Feet);
-
-            // add
             double sumFeet = firstFeet + secondFeet;
 
-            // convert to target unit
-            double result = Convert(sumFeet, LengthUnit.Feet, targetUnit);
+            double result = LengthUnitConverter.FromFeet(sumFeet, targetUnit);
 
             return new QuantityLength(result, targetUnit);
         }
-        private double ToFeet()
-        {
-            switch (unit)
-            {
-                case LengthUnit.Feet:
-                    return value;
 
-                case LengthUnit.Inches:
-                    return value / 12.0;
-
-                case LengthUnit.Yards:
-                    return value * 3.0;
-
-                case LengthUnit.Centimeters:
-                    return (value * 0.393701) / 12.0;
-
-                default:
-                    throw new ArgumentException("Invalid Unit");
-            }
-        }
-
-        // Convert from any unit to feet
-        private static double ToFeet(double value, LengthUnit unit)
-        {
-            switch (unit)
-            {
-                case LengthUnit.Feet:
-                    return value;
-
-                case LengthUnit.Inches:
-                    return value / 12.0;
-
-                case LengthUnit.Yards:
-                    return value * 3.0;
-
-                case LengthUnit.Centimeters:
-                    return (value * 0.393701) / 12.0;
-
-                default:
-                    throw new ArgumentException("Invalid Unit");
-            }
-        }
-
-        // Convert from feet to target unit
-        private static double FromFeet(double valueInFeet, LengthUnit target)
-        {
-            switch (target)
-            {
-                case LengthUnit.Feet:
-                    return valueInFeet;
-
-                case LengthUnit.Inches:
-                    return valueInFeet * 12.0;
-
-                case LengthUnit.Yards:
-                    return valueInFeet / 3.0;
-
-                case LengthUnit.Centimeters:
-                    return valueInFeet * 30.48;
-
-                default:
-                    throw new ArgumentException("Invalid Unit");
-            }
-        }
-
-        // UC5 main API
+        // UC5
         public static double Convert(double value, LengthUnit source, LengthUnit target)
         {
             if (double.IsNaN(value) || double.IsInfinity(value))
                 throw new ArgumentException("Invalid numeric value");
 
-            double valueInFeet = ToFeet(value, source);
+            double valueInFeet = LengthUnitConverter.ToFeet(value, source);
 
-            return FromFeet(valueInFeet, target);
+            return LengthUnitConverter.FromFeet(valueInFeet, target);
         }
 
-        // Instance conversion
         public QuantityLength ConvertTo(LengthUnit targetUnit)
         {
             double convertedValue = Convert(this.value, this.unit, targetUnit);
@@ -151,12 +80,16 @@ namespace QuantityMeasurmentApp.Models
 
             QuantityLength other = (QuantityLength)obj;
 
-            return Math.Abs(this.ToFeet() - other.ToFeet()) < 0.0001;
+            double thisFeet = LengthUnitConverter.ToFeet(this.value, this.unit);
+            double otherFeet = LengthUnitConverter.ToFeet(other.value, other.unit);
+
+            return Math.Abs(thisFeet - otherFeet) < 0.0001;
         }
 
         public override int GetHashCode()
         {
-            return ToFeet().GetHashCode();
+            double feet = LengthUnitConverter.ToFeet(value, unit);
+            return feet.GetHashCode();
         }
 
         public override string ToString()
