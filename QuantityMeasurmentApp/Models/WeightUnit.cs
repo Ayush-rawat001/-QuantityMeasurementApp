@@ -2,6 +2,7 @@ using System;
 
 namespace QuantityMeasurmentApp.Models
 {
+    // Enum for weight units
     public enum WeightUnit
     {
         Kilogram,
@@ -11,7 +12,7 @@ namespace QuantityMeasurmentApp.Models
 
     public static class WeightUnitExtensions
     {
-        // Conversion factor relative to kilogram (base unit)
+        // Get conversion factor relative to base unit (Kilogram)
         public static double GetConversionFactor(this WeightUnit unit)
         {
             switch (unit)
@@ -20,26 +21,32 @@ namespace QuantityMeasurmentApp.Models
                     return 1.0;
 
                 case WeightUnit.Gram:
-                    return 0.001;
+                    return 0.001;       // 1 gram = 0.001 kilogram
 
                 case WeightUnit.Pound:
-                    return 0.453592;
+                    return 0.453592;    // 1 pound ≈ 0.453592 kilogram
 
                 default:
                     throw new ArgumentException("Invalid weight unit");
             }
         }
 
-        // Convert unit → kilograms
+        // Convert value from this unit → base unit (Kilogram)
         public static double ConvertToBaseUnit(this WeightUnit unit, double value)
         {
             return value * unit.GetConversionFactor();
         }
 
-        // Convert kilograms → target unit
+        // Convert value from base unit (Kilogram) → this unit
         public static double ConvertFromBaseUnit(this WeightUnit unit, double valueInKg)
         {
             return valueInKg / unit.GetConversionFactor();
+        }
+
+        // Return unit name as string
+        public static string GetUnitName(this WeightUnit unit)
+        {
+            return unit.ToString();
         }
     }
 }

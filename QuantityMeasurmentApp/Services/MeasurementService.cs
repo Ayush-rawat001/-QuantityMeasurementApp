@@ -1,10 +1,13 @@
+using System;
 using QuantityMeasurmentApp.Models;
 
 namespace QuantityMeasurmentApp.Services
 {
+    // Generic measurement service for all types of quantities
     public class MeasurementService
     {
-        public bool AreEqual(QuantityLength q1, QuantityLength q2)
+        // Check equality of two quantities
+        public bool AreEqual<U>(Quantity<U> q1, Quantity<U> q2) where U : struct
         {
             if (q1 == null || q2 == null)
                 return false;
@@ -12,48 +15,31 @@ namespace QuantityMeasurmentApp.Services
             return q1.Equals(q2);
         }
 
-        // UC6
-        public QuantityLength AddLengths(QuantityLength q1, QuantityLength q2)
+        // Add two quantities (result in first quantity's unit)
+        public Quantity<U> Add<U>(Quantity<U> q1, Quantity<U> q2) where U : struct
         {
             if (q1 == null || q2 == null)
-                throw new ArgumentException("Length cannot be null");
+                throw new ArgumentException("Quantity cannot be null");
 
             return q1.Add(q2);
         }
 
-        // UC7
-        public QuantityLength AddLengths(QuantityLength q1, QuantityLength q2, LengthUnit targetUnit)
+        // Add two quantities and return result in a target unit
+        public Quantity<U> Add<U>(Quantity<U> q1, Quantity<U> q2, U targetUnit) where U : struct
         {
             if (q1 == null || q2 == null)
-                throw new ArgumentException("Length cannot be null");
+                throw new ArgumentException("Quantity cannot be null");
 
             return q1.Add(q2, targetUnit);
         }
 
-        // ---------- UC9 WEIGHT METHODS ----------
-
-        public bool AreEqual(QuantityWeight q1, QuantityWeight q2)
+        // Convert a quantity to a target unit
+        public Quantity<U> Convert<U>(Quantity<U> quantity, U targetUnit) where U : struct
         {
-            if (q1 == null || q2 == null)
-                return false;
+            if (quantity == null)
+                throw new ArgumentException("Quantity cannot be null");
 
-            return q1.Equals(q2);
-        }
-
-        public QuantityWeight AddWeights(QuantityWeight q1, QuantityWeight q2)
-        {
-            if (q1 == null || q2 == null)
-                throw new ArgumentException("Weight cannot be null");
-
-            return q1.Add(q2);
-        }
-
-        public QuantityWeight AddWeights(QuantityWeight q1, QuantityWeight q2, WeightUnit targetUnit)
-        {
-            if (q1 == null || q2 == null)
-                throw new ArgumentException("Weight cannot be null");
-
-            return q1.Add(q2, targetUnit);
+            return quantity.ConvertTo(targetUnit);
         }
     }
 }

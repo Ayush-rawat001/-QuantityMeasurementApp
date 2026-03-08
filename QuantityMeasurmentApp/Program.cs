@@ -1,4 +1,4 @@
-﻿using QuantityMeasurementApp.UI;
+﻿using QuantityMeasurmentApp.UI;
 
 namespace QuantityMeasurmentApp
 {
