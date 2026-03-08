@@ -14,7 +14,8 @@ namespace QuantityMeasurementApp.UI
             {
                 Console.WriteLine("=====Welcome to Quantity Measurement App=====");
                 Console.WriteLine("1) Compare Length");
-                Console.WriteLine("2) Exit");
+                Console.WriteLine("2) Convert Length");
+                Console.WriteLine("3) Exit");
 
                 int option = int.Parse(Console.ReadLine() ?? "");
 
@@ -25,13 +26,13 @@ namespace QuantityMeasurementApp.UI
                         Console.Write("Enter first value: ");
                         double v1 = Convert.ToDouble(Console.ReadLine());
 
-                        Console.Write("Enter unit (Feet/Inches): ");
+                        Console.Write("Enter unit (Feet/Inches/Yards/Centimeters): ");
                         LengthUnit u1 = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
 
                         Console.Write("Enter second value: ");
                         double v2 = Convert.ToDouble(Console.ReadLine());
 
-                        Console.Write("Enter unit (Feet/Inches): ");
+                        Console.Write("Enter unit (Feet/Inches/Yards/Centimeters): ");
                         LengthUnit u2 = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
 
                         QuantityLength q1 = new QuantityLength(v1, u1);
@@ -46,6 +47,25 @@ namespace QuantityMeasurementApp.UI
                         break;
 
                     case 2:
+
+                        Console.Write("Enter value: ");
+                        double value = Convert.ToDouble(Console.ReadLine());
+
+                        Console.Write("Convert from (Feet/Inches/Yards/Centimeters): ");
+                        LengthUnit source = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
+
+                        Console.Write("Convert to (Feet/Inches/Yards/Centimeters): ");
+                        LengthUnit target = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
+
+                        double converted = QuantityLength.Convert(value, source, target);
+
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine($"{value} {source} = {converted} {target}");
+                        Console.WriteLine("--------------------------\n");
+
+                        break;
+
+                    case 3:
                         loop = false;
                         break;
 
