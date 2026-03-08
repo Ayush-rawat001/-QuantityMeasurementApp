@@ -13,9 +13,8 @@ namespace QuantityMeasurementApp.UI
             while (loop)
             {
                 Console.WriteLine("=====Welcome to Quantity Measurement App=====");
-                Console.WriteLine("1) Compare Feet");
-                Console.WriteLine("2) Compare Inches");
-                Console.WriteLine("3) Exit");
+                Console.WriteLine("1) Compare Length");
+                Console.WriteLine("2) Exit");
 
                 int option = int.Parse(Console.ReadLine() ?? "");
 
@@ -23,43 +22,30 @@ namespace QuantityMeasurementApp.UI
                 {
                     case 1:
 
-                        Console.Write("Enter first value in feet: ");
+                        Console.Write("Enter first value: ");
                         double v1 = Convert.ToDouble(Console.ReadLine());
 
-                        Console.Write("Enter second value in feet: ");
+                        Console.Write("Enter unit (Feet/Inches): ");
+                        LengthUnit u1 = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
+
+                        Console.Write("Enter second value: ");
                         double v2 = Convert.ToDouble(Console.ReadLine());
 
-                        Feet f1 = new Feet(v1);
-                        Feet f2 = new Feet(v2);
+                        Console.Write("Enter unit (Feet/Inches): ");
+                        LengthUnit u2 = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
 
-                        bool resultFeet = service.AreEqual(f1, f2);
+                        QuantityLength q1 = new QuantityLength(v1, u1);
+                        QuantityLength q2 = new QuantityLength(v2, u2);
+
+                        bool result = service.AreEqual(q1, q2);
 
                         Console.WriteLine("--------------------------");
-                        Console.Write("Values are ");
-                        Console.WriteLine(resultFeet ? "Equal" : "Not Equal");
+                        Console.WriteLine(result ? "Equal" : "Not Equal");
                         Console.WriteLine("--------------------------\n");
+
                         break;
 
                     case 2:
-
-                        Console.Write("Enter first value in inches: ");
-                        double i1 = Convert.ToDouble(Console.ReadLine());
-
-                        Console.Write("Enter second value in inches: ");
-                        double i2 = Convert.ToDouble(Console.ReadLine());
-
-                        Inches inch1 = new Inches(i1);
-                        Inches inch2 = new Inches(i2);
-
-                        bool resultInches = service.AreEqual(inch1, inch2);
-
-                        Console.WriteLine("--------------------------");
-                        Console.Write("Values are ");
-                        Console.WriteLine(resultInches ? "Equal" : "Not Equal");
-                        Console.WriteLine("--------------------------\n");
-                        break;
-
-                    case 3:
                         loop = false;
                         break;
 
