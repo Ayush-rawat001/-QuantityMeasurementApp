@@ -21,12 +21,18 @@ namespace QuantityMeasurmentApp.Models
                 case LengthUnit.Inches:
                     return value / 12.0;
 
+                case LengthUnit.Yards:
+                    return value * 3.0;
+
+                case LengthUnit.Centimeters:
+                    return (value * 0.393701) / 12.0;
+
                 default:
-                    throw new ArgumentException("Invalid unit");
+                    throw new ArgumentException("Invalid Unit");
             }
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (this == obj)
                 return true;
