@@ -16,6 +16,26 @@ namespace QuantityMeasurmentApp.Models
         public double Value => value;
         public LengthUnit Unit => unit;
 
+
+
+        //UC6 
+        public QuantityLength Add(QuantityLength other)
+        {
+            if (other == null)
+                throw new ArgumentException("Second operand cannot be null");
+
+            // Convert both to base unit (feet)
+            double firstInFeet = Convert(Value, Unit, LengthUnit.Feet);
+            double secondInFeet = Convert(other.Value, other.Unit, LengthUnit.Feet);
+
+            // Add
+            double sumFeet = firstInFeet + secondInFeet;
+
+            // Convert back to unit of first operand
+            double result = Convert(sumFeet, LengthUnit.Feet, Unit);
+
+            return new QuantityLength(result, Unit);
+        }
         private double ToFeet()
         {
             switch (unit)

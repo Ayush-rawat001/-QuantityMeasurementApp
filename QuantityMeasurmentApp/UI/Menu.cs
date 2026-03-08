@@ -15,7 +15,8 @@ namespace QuantityMeasurementApp.UI
                 Console.WriteLine("=====Welcome to Quantity Measurement App=====");
                 Console.WriteLine("1) Compare Length");
                 Console.WriteLine("2) Convert Length");
-                Console.WriteLine("3) Exit");
+                Console.WriteLine("3) Add Length");
+                Console.WriteLine("4) Exit");
 
                 int option = int.Parse(Console.ReadLine() ?? "");
 
@@ -66,6 +67,31 @@ namespace QuantityMeasurementApp.UI
                         break;
 
                     case 3:
+
+                        Console.Write("Enter first value: ");
+                        double a = Convert.ToDouble(Console.ReadLine());
+
+                        Console.Write("Enter unit (Feet/Inches/Yards/Centimeters): ");
+                        LengthUnit ua = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
+
+                        Console.Write("Enter second value: ");
+                        double b = Convert.ToDouble(Console.ReadLine());
+
+                        Console.Write("Enter unit (Feet/Inches/Yards/Centimeters): ");
+                        LengthUnit ub = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
+
+                        QuantityLength l1 = new QuantityLength(a, ua);
+                        QuantityLength l2 = new QuantityLength(b, ub);
+
+                        QuantityLength sum = service.AddLengths(l1, l2);
+
+                        Console.WriteLine("--------------------------");
+                        Console.WriteLine($"Result: {sum.Value} {sum.Unit}");
+                        Console.WriteLine("--------------------------\n");
+
+                        break;
+
+                    case 4:
                         loop = false;
                         break;
 
