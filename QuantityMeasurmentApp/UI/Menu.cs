@@ -80,10 +80,13 @@ namespace QuantityMeasurementApp.UI
                         Console.Write("Enter unit (Feet/Inches/Yards/Centimeters): ");
                         LengthUnit ub = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
 
+                        Console.Write("Enter target unit (Feet/Inches/Yards/Centimeters): ");
+                        LengthUnit targetUnit = Enum.Parse<LengthUnit>(Console.ReadLine(), true);
+
                         QuantityLength l1 = new QuantityLength(a, ua);
                         QuantityLength l2 = new QuantityLength(b, ub);
 
-                        QuantityLength sum = service.AddLengths(l1, l2);
+                        QuantityLength sum = service.AddLengths(l1, l2, targetUnit);
 
                         Console.WriteLine("--------------------------");
                         Console.WriteLine($"Result: {sum.Value} {sum.Unit}");

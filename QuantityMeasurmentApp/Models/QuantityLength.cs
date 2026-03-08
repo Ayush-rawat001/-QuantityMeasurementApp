@@ -36,6 +36,28 @@ namespace QuantityMeasurmentApp.Models
 
             return new QuantityLength(result, Unit);
         }
+
+        //UC7 ADD METHOD OVERLOADED
+        public QuantityLength Add(QuantityLength other, LengthUnit targetUnit)
+        {
+            if (other == null)
+                throw new ArgumentException("Second operand cannot be null");
+
+            if (!Enum.IsDefined(typeof(LengthUnit), targetUnit))
+                throw new ArgumentException("Invalid target unit");
+
+            // convert both to base unit (feet)
+            double firstFeet = Convert(Value, Unit, LengthUnit.Feet);
+            double secondFeet = Convert(other.Value, other.Unit, LengthUnit.Feet);
+
+            // add
+            double sumFeet = firstFeet + secondFeet;
+
+            // convert to target unit
+            double result = Convert(sumFeet, LengthUnit.Feet, targetUnit);
+
+            return new QuantityLength(result, targetUnit);
+        }
         private double ToFeet()
         {
             switch (unit)
