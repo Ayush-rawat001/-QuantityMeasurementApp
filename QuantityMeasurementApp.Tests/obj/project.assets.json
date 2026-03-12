@@ -2291,19 +2291,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\DELL\\.nuget\\packages\\": {}
+    "C:\\Users\\rawat\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\Practice\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
+      "projectUniqueName": "D:\\QuantityMeasurmentApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
       "projectName": "QuantityMeasurementApp.Tests",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\Practice\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
-      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\Practice\\QuantityMeasurementApp\\QuantityMeasurementApp.Tests\\obj\\",
+      "projectPath": "D:\\QuantityMeasurmentApp\\QuantityMeasurementApp.Tests\\QuantityMeasurementApp.Tests.csproj",
+      "packagesPath": "C:\\Users\\rawat\\.nuget\\packages\\",
+      "outputPath": "D:\\QuantityMeasurmentApp\\QuantityMeasurementApp.Tests\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rawat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2311,14 +2316,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\DELL\\Desktop\\Practice\\QuantityMeasurementApp\\QuantityMeasurementApp\\QuantityMeasurementApp.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Desktop\\Practice\\QuantityMeasurementApp\\QuantityMeasurementApp\\QuantityMeasurementApp.csproj"
+            "D:\\QuantityMeasurmentApp\\QuantityMeasurementApp\\QuantityMeasurementApp.csproj": {
+              "projectPath": "D:\\QuantityMeasurmentApp\\QuantityMeasurementApp\\QuantityMeasurementApp.csproj"
             }
           }
         }
@@ -2360,7 +2366,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
