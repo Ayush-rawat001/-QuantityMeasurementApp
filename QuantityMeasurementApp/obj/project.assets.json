@@ -1,11 +1,69 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "QuantityMeasurementBusinessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "QuantityMeasurementModelLayer": "1.0.0",
+          "QuantityMeasurementRepoLayer": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/QuantityMeasurementBusinessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QuantityMeasurementBusinessLayer.dll": {}
+        }
+      },
+      "QuantityMeasurementModelLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/QuantityMeasurementModelLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QuantityMeasurementModelLayer.dll": {}
+        }
+      },
+      "QuantityMeasurementRepoLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "QuantityMeasurementModelLayer": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/QuantityMeasurementRepoLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/QuantityMeasurementRepoLayer.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "QuantityMeasurementBusinessLayer/1.0.0": {
+      "type": "project",
+      "path": "../QuantityMeasurementBusinessLayer/QuantityMeasurementBusinessLayer.csproj",
+      "msbuildProject": "../QuantityMeasurementBusinessLayer/QuantityMeasurementBusinessLayer.csproj"
+    },
+    "QuantityMeasurementModelLayer/1.0.0": {
+      "type": "project",
+      "path": "../QuantityMeasurementModelLayer/QuantityMeasurementModelLayer.csproj",
+      "msbuildProject": "../QuantityMeasurementModelLayer/QuantityMeasurementModelLayer.csproj"
+    },
+    "QuantityMeasurementRepoLayer/1.0.0": {
+      "type": "project",
+      "path": "../QuantityMeasurementRepoLayer/QuantityMeasurementRepoLayer.csproj",
+      "msbuildProject": "../QuantityMeasurementRepoLayer/QuantityMeasurementRepoLayer.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "QuantityMeasurementBusinessLayer >= 1.0.0",
+      "QuantityMeasurementModelLayer >= 1.0.0",
+      "QuantityMeasurementRepoLayer >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\rawat\\.nuget\\packages\\": {},
@@ -39,7 +97,17 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\QuantityMeasurmentApp\\QuantityMeasurementBusinessLayer\\QuantityMeasurementBusinessLayer.csproj": {
+              "projectPath": "D:\\QuantityMeasurmentApp\\QuantityMeasurementBusinessLayer\\QuantityMeasurementBusinessLayer.csproj"
+            },
+            "D:\\QuantityMeasurmentApp\\QuantityMeasurementModelLayer\\QuantityMeasurementModelLayer.csproj": {
+              "projectPath": "D:\\QuantityMeasurmentApp\\QuantityMeasurementModelLayer\\QuantityMeasurementModelLayer.csproj"
+            },
+            "D:\\QuantityMeasurmentApp\\QuantityMeasurementRepoLayer\\QuantityMeasurementRepoLayer.csproj": {
+              "projectPath": "D:\\QuantityMeasurmentApp\\QuantityMeasurementRepoLayer\\QuantityMeasurementRepoLayer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

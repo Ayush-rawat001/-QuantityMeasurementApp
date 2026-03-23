@@ -1,35 +1,25 @@
-﻿using QuantityMeasurementApp.Menu;
+﻿using QuantityMeasurementApp.Controllers;
+using QuantityMeasurementBusinessLayer.Services;
+using QuantityMeasurementRepoLayer.Repositories;
+using QuantityMeasurementRepoLayer.Interfaces;
 
 namespace QuantityMeasurementApp
 {
-    /// <summary>
-    /// Entry point of the Quantity Measurement Application.
-    /// 
-    /// Responsibility:
-    /// - Bootstraps the application.
-    /// - Initializes required components.
-    /// - Delegates execution control to the Menu layer.
-    /// 
-    /// NOTE:
-    /// This class should remain lightweight.
-    /// No business logic or UI logic should be implemented here.
-    /// </summary>
-    internal class Program
+    public class Program
     {
-        /// <summary>
-        /// Main execution method.
-        /// Invoked automatically when the application starts.
-        /// </summary>
-        /// <param name="args">
-        /// Command-line arguments (currently not used).
-        /// </param>
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            // Instantiate Menu component (UI Layer)
-            Menu.Menu menu = new Menu.Menu();
+            // 1. Create Repo
+            ICacheRepository cacheRepo = new InMemoryCacheRepository();
+            
+            // 2. Inject Repo into Service
+            IQuantityMeasurementService service = new QuantityMeasurementService(cacheRepo);
+            
+            // 3. Inject Service into Controller
+            QuantityMeasurementController controller = new QuantityMeasurementController(service);
 
-            // Transfer execution control to Menu
-            menu.Show();
+            // 4. Run App
+            controller.Run();
         }
     }
 }
